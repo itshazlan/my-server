@@ -12,18 +12,18 @@ import app from '../../config/server/server';
  * @param {NextFunction} next 
  * @returns {Promise < void >}
  */
-export async function signup(req: Request, res: Response, next: NextFunction): Promise < void > {
+export async function signup(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
         const user: IUserModel = await AuthService.createUser(req.body);
         const token: string = jwt.sign({ email: user.email }, app.get('secret'), {
             expiresIn: '60m'
         });
-        
+
         res.json({
             status: 200,
             logged: true,
             token: token,
-            message: 'Sign in successfull'
+            message: 'Sign in successful'
         });
     } catch (error) {
         if (error.code === 500) {
@@ -43,19 +43,19 @@ export async function signup(req: Request, res: Response, next: NextFunction): P
  * @param {NextFunction} next
  * @returns {Promise < void >}
  */
-export async function login(req: Request, res: Response, next: NextFunction): Promise < void > {
+export async function login(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
         const user: IUserModel = await AuthService.getUser(req.body);
 
         const token: string = jwt.sign({ email: user.email }, app.get('secret'), {
             expiresIn: '60m'
         });
-        
+
         res.json({
             status: 200,
             logged: true,
             token: token,
-            message: 'Sign in successfull'
+            message: 'Sign in successful'
         });
 
     } catch (error) {

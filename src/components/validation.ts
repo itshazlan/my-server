@@ -35,8 +35,8 @@ abstract class Validation {
                 if (!Types.ObjectId.isValid(value)) {
                     return this.createError(
                         'objectId.base', {
-                            value
-                        },
+                        value
+                    },
                         state,
                         options
                     );

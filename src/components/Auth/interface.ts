@@ -10,11 +10,11 @@ export interface IAuthService {
      * @returns {Promise<IUserModel>}
      * @memberof AuthService
      */
-    createUser(IUserModel: IUserModel): Promise < IUserModel > ;
+    createUser(IUserModel: IUserModel): Promise<IUserModel>;
     /**
      * @param {IUserModel} IUserModel
      * @returns {Promise<IUserModel>}
      * @memberof AuthService
      */
-    getUser(IUserModel: IUserModel): Promise < IUserModel >;
+    getUser(IUserModel: IUserModel): Promise<IUserModel>;
 }

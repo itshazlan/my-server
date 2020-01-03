@@ -25,7 +25,7 @@ export interface IUserModel extends Document {
         website: string,
         picture: string
     };
-    comparePassword: (password: string) => Promise < boolean > ;
+    comparePassword: (password: string) => Promise<boolean>;
     gravatar: (size: number) => string;
 }
 
@@ -76,7 +76,7 @@ const UserSchema: Schema = new Schema({
 }, {
     collection: 'usermodel',
     versionKey: false
-}).pre('save', async function (next: NextFunction): Promise < void > {
+}).pre('save', async function (next: NextFunction): Promise<void> {
     const user: any = this; // tslint:disable-line
 
     if (!user.isModified('password')) {
@@ -98,7 +98,7 @@ const UserSchema: Schema = new Schema({
 /**
  * Method for comparing passwords
  */
-UserSchema.methods.comparePassword = async function (candidatePassword: string): Promise < boolean > {
+UserSchema.methods.comparePassword = async function (candidatePassword: string): Promise<boolean> {
     try {
         const match: boolean = await bcrypt.compare(candidatePassword, this.password);
 
@@ -123,4 +123,4 @@ UserSchema.methods.gravatar = function (size: number): string {
     return `https://gravatar.com/avatar/${md5}?s=${size}&d=retro`;
 };
 
-export default connections.db.model < IUserModel > ('UserModel', UserSchema);
+export default connections.db.model<IUserModel>('UserModel', UserSchema);

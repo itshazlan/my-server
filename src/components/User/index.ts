@@ -10,7 +10,7 @@ import { NextFunction, Request, Response } from 'express';
  * @param {NextFunction} next
  * @returns {Promise < void >}
  */
-export async function findAll(req: Request, res: Response, next: NextFunction): Promise < void > {
+export async function findAll(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
         const users: IUserModel[] = await UserService.findAll();
 
@@ -27,7 +27,7 @@ export async function findAll(req: Request, res: Response, next: NextFunction): 
  * @param {NextFunction} next
  * @returns {Promise < void >}
  */
-export async function findOne(req: Request, res: Response, next: NextFunction): Promise < void > {
+export async function findOne(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
         const user: IUserModel = await UserService.findOne(req.params.id);
 
@@ -44,7 +44,7 @@ export async function findOne(req: Request, res: Response, next: NextFunction): 
  * @param {NextFunction} next
  * @returns {Promise < void >}
  */
-export async function create(req: Request, res: Response, next: NextFunction): Promise < void > {
+export async function create(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
         const user: IUserModel = await UserService.insert(req.body);
 
@@ -61,7 +61,7 @@ export async function create(req: Request, res: Response, next: NextFunction): P
  * @param {NextFunction} next
  * @returns {Promise < void >}
  */
-export async function remove(req: Request, res: Response, next: NextFunction): Promise < void > {
+export async function remove(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
         const user: IUserModel = await UserService.remove(req.params.id);
 

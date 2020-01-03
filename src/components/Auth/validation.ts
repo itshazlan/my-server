@@ -9,10 +9,10 @@ import { IUserModel } from '../User/model';
  */
 class AuthValidation extends Validation {
 
-     /**
-     * Creates an instance of AuthValidation.
-     * @memberof AuthValidation
-     */
+    /**
+    * Creates an instance of AuthValidation.
+    * @memberof AuthValidation
+    */
     constructor() {
         super();
     }
@@ -23,7 +23,7 @@ class AuthValidation extends Validation {
      */
     createUser(
         params: IUserModel
-    ): Joi.ValidationResult < IUserModel > {
+    ): Joi.ValidationResult<IUserModel> {
         const schema: Joi.Schema = Joi.object().keys({
             password: Joi.string().required(),
             email: Joi.string().email({
@@ -40,7 +40,7 @@ class AuthValidation extends Validation {
      */
     getUser(
         params: IUserModel
-    ): Joi.ValidationResult < IUserModel > {
+    ): Joi.ValidationResult<IUserModel> {
         const schema: Joi.Schema = Joi.object().keys({
             password: Joi.string().required(),
             email: Joi.string().email({
@@ -49,7 +49,7 @@ class AuthValidation extends Validation {
         });
 
         return Joi.validate(params, schema);
-    } 
+    }
 }
 
 export default new AuthValidation();

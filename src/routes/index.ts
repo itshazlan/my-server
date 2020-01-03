@@ -2,8 +2,11 @@ import * as express from 'express';
 import * as http from 'http';
 import * as jwtConfig from '../config/middleware/jwtAuth';
 import * as swaggerUi from 'swagger-ui-express';
+import * as multer from 'multer';
 import AuthRouter from './AuthRouter';
 import UserRouter from './UserRouter';
+import UploadRouter from './UploadRouter';
+import UtilsProvider from '../components/Upload/utils';
 let swaggerDoc: Object;
 
 try {
@@ -30,6 +33,16 @@ export function init(app: express.Application): void {
      * @constructs
      */
     app.use('/v1/users', jwtConfig.isAuthenticated, UserRouter);
+
+    /**
+     * @description
+     *  Forwards any requests to the /v1/uploads URI to our UploadRouter
+     *  Also, check if user authenticated
+     * @constructs
+     */
+    const FOLDER_PATH = 'uploads';
+    const upload = multer({ dest: `${FOLDER_PATH}`, fileFilter: UtilsProvider.imageFilter });
+    app.use('/v1/uploads', upload.single('image'), UploadRouter);
 
     /**
      * @description Forwards any requests to the /auth URI to our AuthRouter
